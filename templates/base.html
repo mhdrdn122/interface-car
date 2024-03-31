@@ -1,0 +1,42 @@
+{% load static  %}
+
+<!doctype html>
+
+<html lang="en"> 
+
+ <head> 
+
+  <meta charset="UTF-8"> 
+
+  <title> Login & sing up </title> 
+
+   <link rel="stylesheet"  href="{% static 'Css/auth.css' %}" /> 
+   <link rel="stylesheet"  href="{% static 'Css/style.css' %}" />
+   <link rel="stylesheet"  href="{% static 'Css/module.css' %}" />
+
+ </head> 
+  
+  
+
+ {% block contentAuth %}
+    
+{% endblock contentAuth %}
+
+{% block contentIndex %}
+    
+{% endblock contentIndex %}
+
+
+{% block contentLogin %}
+  
+{% endblock contentLogin %}
+  
+     
+   
+<script src="{% static 'Js/auth.js' %}"></script>
+
+<script src="{% static 'Js/script.js' %}"></script>
+
+
+
+</html>

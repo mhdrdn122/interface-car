@@ -1,0 +1,477 @@
+/*    ***********  power button style  start   *************    */
+
+.power-btn{
+    width: calc( var(--button-size) * 2);
+    height: calc(var( --button-size) * 2);
+    background-color: #041c326e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    z-index: 10;
+    border: 1px solid #041C32;
+  }
+  
+  .power-btn label{
+    width: var(--button-size);
+    height: var(--button-size);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  label svg{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: var(--button-size);
+    /*background-color: hotpink;*/
+    transform: translate(5%, 0);
+    transform: rotateZ(-56deg);
+    border-radius: 50%; 
+  }
+  
+  .check{
+    display: none;
+  }
+  
+  .inner-circle,
+  .outer-circle{
+    width: 80%;
+    transform: translate(15%, 15%);
+    fill: none;
+    stroke-width: 8%;
+    stroke: white;
+    stroke-dasharray: 220%;
+    stroke-dashoffset: 220%;
+    transition: 0.45s;
+    stroke-linecap: round;
+    
+  }
+  
+  .inner-circle{
+    stroke-dashoffset: 40%;
+    stroke: rgb(29, 29, 29);
+  }
+  
+  .outer-circle{
+    stroke-dashoffset: 220%;
+    stroke: whitesmoke;
+    filter: none;
+  
+  }
+  
+  .rect{
+    position: absolute;
+    height: 33%;
+    width: 10%;
+    transform: translate(15%, -110%);
+    background-color: rgb(29, 29, 29);
+    z-index: 3;
+    border-radius: 20px;
+  }
+  
+  #check:checked ~* .inner-circle, #check:checked ~* .outer-circle{
+    stroke-dashoffset: 40%;
+  }
+  
+  #check:checked ~* .outer-circle{
+    
+    transition:filter 0.1s ease-in 0.5s, stroke-dashoffset 0.4s ease-in-out;
+    filter: drop-shadow(0px 0px 2px rgba(245, 245, 245, 0.8)) 
+    drop-shadow(0px 0px 1px rgba(245, 245, 245, 0.8)) 
+  }
+  
+  #check:checked ~* .rotate-svg{
+    transition: transform 0.4s ease-in-out;
+    transform: rotateZ(304deg);
+  }
+  
+  #check:checked ~* .rect{
+    animation: up-to-down 0.6s cubic-bezier(.46,.89,.81,1.44) forwards;
+  }
+  
+  @keyframes up-to-down{
+    0%{
+        transform: translate(15%, -100%);
+    }
+  
+   75%{
+        transform: translate(2.5%, -180%);
+        background-color: rgb(31, 31, 31);
+    }
+  
+    87%{
+        transform: translate(2.5%, -90%);
+        box-shadow: none;
+        background-color: white;
+    }
+  
+    100%{
+        background-color: white;
+        box-shadow: inset 0 0 0.2rem 0 whitesmoke, 0 0 0.2rem 0 whitesmoke;
+        transform: translate(15%, -110%);
+    }
+  }
+  
+  .rect{
+    box-shadow: none;
+  }
+  
+  /* ************  power button style  end   ********** */
+
+/*           ***********  led button style  start   *************    */
+
+  .switch-container {
+    position: relative;
+    border-radius: 3.125em;
+    box-shadow: 0 .125em .25em rgba(0, 0, 0, .2);
+    overflow: hidden;
+    cursor: pointer;
+    width: 90px;
+    zoom: 75%;
+    transform: rotate(90deg);
+  
+  }
+  
+  @media  (max-width:768px){
+    .btns{
+      width: 100%;
+    }
+   
+  }
+  .switch-input {
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .switch-button {
+    display: inline-flex;
+    padding: 0 .375em;
+    border-radius: inherit;
+    border: .0625em solid #6b717b;
+    background-color: #aaafbb;
+    box-shadow: inset 0 0 .5em rgba(0, 0, 0, .4);
+    transition-property: border-color, background-color;
+    transition-duration: .2s;
+  }
+  
+  .switch-input:checked + .switch-button {
+    border-color:var(--alternet-color-background);
+    background-color: rgb(224, 9, 9);
+  }
+  
+  .switch-button-inside {
+    display: inline-flex;
+    column-gap: 1em;
+    position: relative;
+    border-radius: inherit;
+    padding: .75em;
+    transform: translateX(-.375em);
+    background-image: linear-gradient(90deg, #c5c9d3 48%, #d5d7dd 52%);
+    box-shadow: 
+      inset .0625em 0 .0625em rgba(255, 255, 255, .4),
+      inset -.0625em 0 .0625em rgba(255, 255, 255, .4);
+    transition-property: transform;
+    transition-duration: .2s;
+  }
+  
+  .switch-input:checked + .switch-button .switch-button-inside {
+    transform: translateX(.375em);
+  }
+  
+  .switch-button-inside::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;
+    background-image: linear-gradient(90deg, rgba(255, 0, 0, 0.637) 48%, red 52%);
+    box-shadow: 
+      inset .0625em 0 .0625em rgba(255, 255, 255, .2),
+      inset -.0625em 0 .0625em rgba(255, 255, 255, .2);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: .2s;
+  }
+  
+  .switch-input:checked + .switch-button .switch-button-inside::after {
+    opacity: 1;
+  }
+  
+  .switch-icon {
+    width: 1em;
+    height: 1em;
+    fill: #fff;
+    filter: 
+      drop-shadow(0 .0625em .0625em rgba(0, 0, 0, .4))
+      drop-shadow(0 0 .25em rgba(255, 255, 255, .4))
+      drop-shadow(0 0 .25em rgba(255, 255, 255, .4));
+    transition-property: fill;
+    transition-duration: .2s;
+  }
+  
+  .switch-icon.off {
+    fill: #767c86;
+    filter: none;
+  }
+  
+  .switch-input:checked + .switch-button .switch-icon.off {
+    fill: #fff;
+    filter: none;
+  }
+  
+  .switch-icon.on {
+    fill: #767c86;
+    filter: none;
+  }
+  
+  .switch-input:not(:checked) + .switch-button .switch-icon.on {
+    fill: #767c86;
+    filter: none;
+  }
+  
+/*           ***********  led button style  end   *************    */
+  
+/*           ***********  zmooor button style  start   *************    */
+
+.obj {
+ 
+    width: 30px;
+    height: 30px;
+    margin-left: -50px;
+    margin-top: -50px;
+    right: 30px;
+    bottom: 30px;
+    position: absolute;
+    background: #f25f5c;
+    border-radius:5px;
+    box-shadow: inset -2px 2px 2px 0px rgba(241, 157, 157, 1), inset 2px -2px 2px 0px rgba(119, 0, 0, 0.3), inset 0px 0px 40px 15px rgba(222, 36, 36, 1), 1px 1px 0 0 rgba(210, 36, 36, 0.97), 2px 2px 0 0 rgba(207, 32, 32, 0.94), 3px 3px 0 0 rgba(204, 28, 28, 0.91), 4px 4px 0 0 rgba(201, 25, 25, 0.88), 5px 5px 0 0 rgba(198, 21, 21, 0.85), 6px 6px 0 0 rgba(195, 18, 18, 0.82), 7px 7px 0 0 rgba(192, 14, 14, 0.8), 8px 8px 0 0 rgba(189, 11, 11, 0.78);
+    transition: all 0.4s ease-out;
+    cursor: pointer;
+  }
+  
+  .obj:active {
+    transition: all 0.15s ease-out;
+    margin-left: -31px;
+    margin-top: -31px;
+    background: #f25f5c;
+    box-shadow: inset -2px 2px 2px 0px rgba(241, 157, 157, 1), inset 2px -2px 2px 0px rgba(119, 0, 0, 0.3), inset 0px 0px 40px 15px rgba(222, 36, 36, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 0 0 rgba(119, 0, 0, 1), 1px 1px 2px 1px rgba(119, 0, 0, 0.5), 0px 0px 4px 1px rgba(119, 0, 0, 1);
+  }
+  
+  /*           ***********  zmooor button style  end   *************    */
+
+/*   btn dark mode start style */
+
+#hide-checkbox {
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+  
+  .toggle {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background: var(--alternet-color-background);
+    border-radius: 50px;
+    transition: 500ms;
+    overflow: hidden;
+  }
+  
+  .toggle-button {
+    position: absolute;
+    display: inline-block;
+    top: 1px;
+    left: 1px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #FAEAF1;
+    overflow: hidden;
+    box-shadow: 0 0 35px 4px rgba(255, 255, 255);
+    transition: all 500ms ease-out;
+  }
+  
+
+  #hide-checkbox:checked + .toggle {
+    background: #24D7F7;
+  }
+  
+  #hide-checkbox:checked + .toggle .toggle-button {
+    background: #F7FFFF;
+    transform: translateX(20px);
+    box-shadow: 0 0 35px 5px rgba(255, 255, 255);
+  }
+  
+  /*  btn  dark  mode end style 
+  
+  /*        *******  start navbar style *******         */
+
+/*           ***********  Tv style  start   *************    */
+
+#container {
+  width: 45%;
+  margin: auto;
+}
+
+@media  ((min-width:768px) and (max-width:1040px) ){
+  #container{
+    width: 60%;
+  }
+}
+@media  (max-width:768px){
+  #container{
+    width: 77%;
+  }
+ 
+}
+@media  (max-width:460px){
+  #container{
+    width: 100%;
+  }
+ 
+}
+#monitor {
+	background: #000; 
+	position: relative;
+	border-top: 3px solid #888; 
+	padding: 2% 2% 4% 2%; 
+	border-radius: 10px; 
+	border-bottom-left-radius: 50% 2%; 
+	border-bottom-right-radius: 50% 2%; 
+	transition: margin-right 1s;
+}
+
+#monitor:after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 3%;
+	left: 36%;
+	height: .5%; 
+	width: 28%;
+	background: red;
+  box-shadow: 0 0 3px 0 rgba(255, 0, 0, 0.466);
+	border-radius: 50%; 
+  animation: monitor 3s linear infinite;
+   
+}
+@keyframes monitor {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+#monitorscreen {
+	position: relative;
+  background-color: #777;
+	background-size: cover; 
+	background-position: top center;
+	padding-bottom: 56.25%; 
+	position: relative;
+	overflow: hidden;
+}
+
+/*           ***********  Tv style  end   *************    */
+
+/*            ******** border start style ***********  */
+
+.block {
+	position: relative;
+	background-color: var(--alternet-color-background);
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.block:before, .block:after {
+	content: '';
+	position: absolute;
+	left: -2px;
+	top: -2px;
+	background: linear-gradient(45deg, #fb0094, #ff004c, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094, 
+		#0000ff, #00ff00,#ca5609,#ffff00, #ff0000 ,#490364 ,#0a4db1);
+	background-size: 400%;
+	width: calc(100% + 4px);
+	height: calc(100% + 4px);
+	z-index: -1;
+	animation: steam 100s linear infinite;
+}
+
+@keyframes steam {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 400% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.block:after {
+	filter: blur(10px);
+}
+
+/*            ******** border end style ***********  */
+
+/*            ******** background start style ***********  */
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.gradient {
+  --size: 250px;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(calc(var(--size) / 5));
+  background-image: linear-gradient(45deg, #fb0094, #ff004c, #0000ff, #00ff00,#ffff00, #ff0000 ,#490364 ,#0a4db1);
+  animation: rotate var(--speed) var(--easing) alternate infinite;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+@media (min-width: 720px) {
+  .gradient {
+    --size: 500px;
+  }
+}
+
+/*            ******** background end style ***********  */
+
+
+
